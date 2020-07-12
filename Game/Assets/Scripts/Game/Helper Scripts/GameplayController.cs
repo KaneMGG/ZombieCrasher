@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameplayController : MonoBehaviour {
 
-	public static GameplayController instance;
+	public static GameplayController instance => _instance;
+	private static GameplayController _instance;
 
 	public GameObject[] obstaclePrefabs;
 	public GameObject[] zombiePrefabs;
@@ -28,24 +29,17 @@ public class GameplayController : MonoBehaviour {
 	private Text final_Score;
 
 	void Awake() {
-		MakeInstance ();
+		Debug.Assert(_instance == null);
+		_instance = this;
 	}
 
 	void Start () {
-		halfGroundSize = GameObject.Find ("GroundBlock Main").GetComponent<GroundBlock>().halfLength;
+		halfGroundSize = GameObject.Find ("GroundBlock1").GetComponent<GroundBlock>().halfLength;
 		playerController = GameObject.FindGameObjectWithTag ("Player").GetComponent<BaseController> ();
 
 		StartCoroutine ("GenerateObstacles");
 
 		score_Text = GameObject.Find ("ScoreText").GetComponent<Text> ();
-	}
-
-	void MakeInstance() {
-		if (instance == null) {
-			instance = this;
-		} else if (instance != null) {
-			Destroy (gameObject);
-		}
 	}
 
 	IEnumerator GenerateObstacles() {
