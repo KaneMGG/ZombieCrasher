@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Engine\CameraContoller.cs" />
     <Compile Include="Assets\Scripts\Game\Block Scripts\GroundBlock.cs" />
     <Compile Include="Assets\Scripts\Game\Bullet Scripts\BulletScript.cs" />
+    <Compile Include="Assets\Scripts\Game\GameConst.cs" />
     <Compile Include="Assets\Scripts\Game\Helper Scripts\AnimationEvents.cs" />
     <Compile Include="Assets\Scripts\Game\Helper Scripts\GameplayController.cs" />
     <Compile Include="Assets\Scripts\Game\Helper Scripts\MainMenuController.cs" />

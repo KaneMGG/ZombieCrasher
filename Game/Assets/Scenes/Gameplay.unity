@@ -2612,7 +2612,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherBlock: {fileID: 1959987235}
-  halfLength: 100
 --- !u!1 &1736933464
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,7 +3289,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherBlock: {fileID: 1727607962}
-  halfLength: 100
 --- !u!1001 &1995630079
 PrefabInstance:
   m_ObjectHideFlags: 0

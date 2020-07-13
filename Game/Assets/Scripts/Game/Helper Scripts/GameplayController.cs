@@ -13,7 +13,6 @@ public class GameplayController : MonoBehaviour {
 	public GameObject[] zombiePrefabs;
 	public Transform[] lanes;
 	public float min_ObstacleDelay = 10f, max_ObstacleDelay = 40f;
-	private float halfGroundSize;
 	private BaseController playerController;
 
 	private Text score_Text;
@@ -34,7 +33,6 @@ public class GameplayController : MonoBehaviour {
 	}
 
 	void Start () {
-		halfGroundSize = GameObject.Find ("GroundBlock1").GetComponent<GroundBlock>().halfLength;
 		playerController = GameObject.FindGameObjectWithTag ("Player").GetComponent<BaseController> ();
 
 		StartCoroutine ("GenerateObstacles");
@@ -46,7 +44,7 @@ public class GameplayController : MonoBehaviour {
 		float timer = Random.Range (min_ObstacleDelay, max_ObstacleDelay) / playerController.speed.z;
 		yield return new WaitForSeconds (timer);
 
-		CreateObstacles (playerController.gameObject.transform.position.z + halfGroundSize);
+		CreateObstacles (playerController.gameObject.transform.position.z + GameConst.HALFLENGTH);
 
 		StartCoroutine ("GenerateObstacles");
 	}
