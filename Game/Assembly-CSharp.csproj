@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Engine\CameraContoller.cs" />
+    <Compile Include="Assets\Scripts\Engine\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Game\Block Scripts\GroundBlock.cs" />
     <Compile Include="Assets\Scripts\Game\Bullet Scripts\BulletScript.cs" />
     <Compile Include="Assets\Scripts\Game\GameConst.cs" />

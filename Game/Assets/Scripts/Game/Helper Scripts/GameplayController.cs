@@ -78,23 +78,30 @@ public class GameplayController : MonoBehaviour {
 
 	void AddObstacle(Vector3 position, int type) {
 		GameObject obstacle = Instantiate (obstaclePrefabs[type], position, Quaternion.identity);
+		ExplosiveObstacle explosiveObstacle = obstacle.GetComponent<ExplosiveObstacle>();
+
+
 		bool mirror = Random.Range (0, 2) == 1;
 
 		switch (type) {
 		case 0:
 			obstacle.transform.rotation = Quaternion.Euler (0f, mirror ? -20 : 20, 0f);
+			explosiveObstacle.damage = 20;
 			break;
 
 		case 1:
 			obstacle.transform.rotation = Quaternion.Euler (0f, mirror ? -20 : 20, 0f);
+			explosiveObstacle.damage = 30;
 			break;
 
 		case 2:
 			obstacle.transform.rotation = Quaternion.Euler (0f, mirror ? -1 : 1, 0f);
+			explosiveObstacle.damage = 40;
 			break;
 
 		case 3:
 			obstacle.transform.rotation = Quaternion.Euler (0f, mirror ? -170 : 170, 0f);
+			explosiveObstacle.damage = 50;
 			break;
 		}
 
@@ -129,6 +136,7 @@ public class GameplayController : MonoBehaviour {
 	}
 
 	public void ExitGame() {
+		print("ExitGame   SceneManager.LoadScene MainMenu");
 		Time.timeScale = 1f;
 		SceneManager.LoadScene ("MainMenu");
 	}
@@ -137,6 +145,13 @@ public class GameplayController : MonoBehaviour {
 		Time.timeScale = 0f;
 		gameover_Panel.SetActive (true);
 		final_Score.text = "Killed: " + zombie_Kill_Count;
+
+		int MaxScore = PlayerPrefs.GetInt("MaxScore");
+		if (MaxScore < zombie_Kill_Count)
+        {
+			PlayerPrefs.SetInt("MaxScore", zombie_Kill_Count);
+
+		}
 	}
 
 	public void Restart() {

@@ -13,6 +13,24 @@ public class CameraContoller : MonoBehaviour
 	public float height_Damping = 3.25f;
 	public float rotation_Damping = 0.27f;
 
+	[SerializeField]
+	private float shakeDuration = 0f;
+
+	// Amplitude of the shake. A larger value shakes the camera harder.
+	public float shakeAmount = 0.7f;
+	public float decreaseFactor = 1.0f;
+
+	//Vector3 originalPos;
+
+	public void ShakeCamera(float duration)
+    {
+		shakeDuration = duration;
+
+	}
+
+
+
+
 	void Start()
 	{
 		target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -45,6 +63,18 @@ public class CameraContoller : MonoBehaviour
 
 		transform.position = new Vector3(transform.position.x, current_Height, transform.position.z);
 
+
+		if (shakeDuration > 0)
+		{
+			transform.localPosition = transform.position + Random.insideUnitSphere * shakeAmount;
+
+			shakeDuration -= Time.deltaTime * decreaseFactor;
+		}
+		else
+		{
+			shakeDuration = 0f;
+			transform.localPosition = transform.position;
+		}
 	}
 
 } // class

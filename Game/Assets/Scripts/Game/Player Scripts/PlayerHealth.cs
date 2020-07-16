@@ -27,11 +27,14 @@ public class PlayerHealth : MonoBehaviour {
 			healthValue = 0;
 		}
 
+		Camera.main.GetComponent<CameraContoller>().ShakeCamera(0.2f);
+
 		health_Slider.value = healthValue;
 
 		if (healthValue == 0) {
 			UI_Holder.SetActive (false);
-			GameplayController.instance.Gameover ();
+		} else {
+			GameplayController.instance.Gameover();
 		}
 
 	}
